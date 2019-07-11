@@ -1,13 +1,8 @@
 'use strict'
 
-<<<<<<< HEAD
-$('.thumbnail').on('click', function() {
-  var src= ($(this).attr('src')==='img')
-=======
 $('.thumbnail').on('click', e => {
 	$('.hero img').attr('src', e.target.src);
 	$('.hero img').attr('alt', e.target.alt);
->>>>>>> 98bcd2d93a2c85bb0d65559aeb0aa1a3be55c681
 });
 
 /*$('.thumbnail').on('focus', e => {
