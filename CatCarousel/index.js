@@ -1,3 +1,7 @@
-$('.thumbnail').on('click', e => {
-  console.log(e.target);
+'use strict'
+
+$('.thumbnail').on('click', function() {
+  var src= ($(this).attr('src')==='img1_on.jpg')
 });
+
+
