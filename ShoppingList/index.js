@@ -37,12 +37,12 @@ function createCalls(){
 	});
 
 	function deleteItems() {
-		$('li').on('click', '.delete-label', function() {
+		$('ul').on('click', '.delete-label', function() {
 			const itemDel = $(event.target).closest('li');
 		itemDel.remove();
 		)}
 	};
-}
+
 
 function createCalls(){
 	deleteItems();
