@@ -14,38 +14,39 @@ function getHttp(object){
 		'</li>';
 }
 
-function createCalls(){
+function addItems(){
 	$('#js-shopping-list-form').on('submit', e => {
 		e.preventDefault();
-		$('.shopping-list').append(getHttp($('#shopping-list-entry').val()));
-		$('#shopping-list-entry').val('');
-	});
-	$('#js-shopping-list-form').on('keyup', e => {
-		if(e.keyCode == 13){
-			$('.shopping-list').append(getHttp($('#shopping-list-entry').val()));
+		const inputValue = $('#shopping-list-entry').val();
+		if (inputValue && inputValue!==''){
+			$('.shopping-list').append(getHttp(inputValue));
 			$('#shopping-list-entry').val('');
 		}
 	});
-
-	$('li .shopping-item-controls .shopping-item-toggle').on('click', e => {
-		$(e.target).parent().parent().parent().find('.shopping-item').addClass('shopping-item__checked');
-		//e.preventDefault();
-		//$(e.target).parent().addClass('shopping-item__checked');
-		console.log($(e.target).parent().parent().parent().find('.shopping-item'));
-		//e.target
-		//$('.shopping-list').append(getHttp($('#shopping-list-entry').val()));
-	});
-
-	function deleteItems() {
-		$('ul').on('click', '.delete-label', function() {
-			const itemDel = $(event.target).closest('li');
-		itemDel.remove();
-		)}
-	};
-
-
-function createCalls(){
-	deleteItems();
 }
 
-$(createCalls);
+function checkItems(){
+	$('.shopping-list').on('click', '.shopping-item-toggle', e => {
+		const title = $(e.target).closest('li').find('.shopping-item');
+		if (title.hasClass('shopping-item__checked')){
+			title.removeClass('shopping-item__checked')
+			$(e.target).text('check');
+		}
+		else{
+			title.addClass('shopping-item__checked');
+			$(e.target).text('uncheck');
+		} 
+	});
+}
+
+function deleteItems() {
+	$('.shopping-list').on('click', '.shopping-item-delete', function() {
+		const itemDel = $(event.target).closest('li');
+		itemDel.remove();
+	});
+};
+
+
+$(addItems);
+$(checkItems);
+$(deleteItems);
